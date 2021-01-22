@@ -1,11 +1,11 @@
 package com.udacity.jdnd.course3.critter.schedule;
 
 import com.udacity.jdnd.course3.critter.Entity.Employee;
+import com.udacity.jdnd.course3.critter.Entity.Pet;
 import com.udacity.jdnd.course3.critter.Entity.Schedule;
 import com.udacity.jdnd.course3.critter.service.EmployeeService;
 import com.udacity.jdnd.course3.critter.service.PetService;
 import com.udacity.jdnd.course3.critter.service.SchedulingService;
-import com.udacity.jdnd.course3.critter.user.EmployeeDTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -68,10 +68,10 @@ public class ScheduleController {
         ScheduleDTO newScheduleDTO = new ScheduleDTO();
         BeanUtils.copyProperties(schedule, newScheduleDTO);
         if (schedule.getPets() != null) {
-            newScheduleDTO.setPetIds(schedule.getPets().stream().map(pet -> pet.getId()).collect(Collectors.toList()));
+            newScheduleDTO.setPetIds(schedule.getPets().stream().map(Pet::getId).collect(Collectors.toList()));
         }
         if (schedule.getEmployees() != null) {
-            newScheduleDTO.setEmployeeIds(schedule.getEmployees().stream().map(employee -> employee.getId()).collect(Collectors.toList()));
+            newScheduleDTO.setEmployeeIds(schedule.getEmployees().stream().map(Employee::getId).collect(Collectors.toList()));
         }
 
         return newScheduleDTO;

@@ -4,9 +4,7 @@ import com.udacity.jdnd.course3.critter.Entity.Customer;
 import com.udacity.jdnd.course3.critter.Entity.Pet;
 import com.udacity.jdnd.course3.critter.service.CustomerService;
 import com.udacity.jdnd.course3.critter.service.PetService;
-import com.udacity.jdnd.course3.critter.user.CustomerDTO;
 import org.springframework.beans.BeanUtils;
-import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;

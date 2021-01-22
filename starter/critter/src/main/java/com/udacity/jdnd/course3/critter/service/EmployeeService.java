@@ -3,7 +3,6 @@ package com.udacity.jdnd.course3.critter.service;
 import com.udacity.jdnd.course3.critter.Entity.Employee;
 import com.udacity.jdnd.course3.critter.repository.EmployeeRepository;
 import com.udacity.jdnd.course3.critter.user.EmployeeSkill;
-import com.udacity.jdnd.course3.critter.user.UserController;
 import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
@@ -21,7 +20,7 @@ public class EmployeeService {
     }
 
     public Employee save(Employee employee) {
-        return (Employee) employeeRepository.save(employee);
+        return employeeRepository.save(employee);
     }
 
     public List<Employee> getAll() {
