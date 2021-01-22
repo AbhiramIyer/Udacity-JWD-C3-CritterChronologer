@@ -75,25 +75,12 @@ public class UserController {
     public List<EmployeeDTO> findEmployeesForService(@RequestBody EmployeeRequestDTO employeeRequestDTO) {
         Set<EmployeeSkill> requiredSkills = employeeRequestDTO.getSkills();
         LocalDate requiredDate = employeeRequestDTO.getDate();
-        List<Employee> employeeList = employeeService
-                .getAll()
-                .stream()
-                .filter(employee -> hasRequiredSkill(employee.getSkills(), requiredSkills))
-                .filter(employee -> isAvailable(employee.getDaysAvailable(), requiredDate))
-                .collect(Collectors.toList());
+        List<Employee> employeeList = employeeService.findEmployeesForService(requiredSkills, requiredDate);
 
         if (employeeList != null) {
             return employeeList.stream().map(employeeToEmployeeDTOFunction).collect(Collectors.toList());
         }
         return null;
-    }
-
-    private boolean isAvailable(Set<DayOfWeek> daysAvailable, LocalDate date) {
-        return daysAvailable.contains(date.getDayOfWeek());
-    }
-
-    private boolean hasRequiredSkill(Set<EmployeeSkill> employeeSkills, Set<EmployeeSkill> requiredSkills) {
-        return employeeSkills.containsAll(requiredSkills);
     }
 
     Function<Customer, CustomerDTO> customerToCustomerDTOFunction = customer -> {
